@@ -1,6 +1,4 @@
 using System;
-using NUnit.Framework;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,7 +21,7 @@ public class MoveHero : MonoBehaviour
     private bool isCrouching = false;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -49,13 +47,17 @@ public class MoveHero : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         MoveX();
+        Vector3 origin = transform.position +0.01f* Vector3.down;
+        Vector3 direction = Vector3.down;
+        RaycastHit2D downHit = Physics2D.Raycast(origin, direction, 0.2f);
+        Debug.DrawRay(origin, direction *0.2f, Color.aquamarine);
         if (isJumping)
         {
-            if (rigidbody2D.linearVelocityY < 0f)     //changer avec raycasting (vers le bas, verifier à 0.2f) ->
+            if (downHit.collider != null)                          //(rigidbody2D.linearVelocityY < 0f)     //changer avec raycasting (vers le bas, verifier à 0.2f) ->
             {
                 isJumping = false;
                 animator.SetBool("on jump", false);
@@ -70,9 +72,10 @@ public class MoveHero : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext callbackContext)
     {
-        rigidbody2D.AddForce(Vector2.up * jumpForce);
         animator.SetBool("on jump", true);
+        rigidbody2D.AddForce(Vector2.up * jumpForce);
         isJumping = true;
+        Debug.Log("jump");
     }
 
     private void OnCrouch(InputAction.CallbackContext callbackContext)
