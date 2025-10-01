@@ -1,5 +1,4 @@
 using System;
-// using System.Numerics;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -24,7 +23,7 @@ public class EnemyMove : MonoBehaviour
         Vector3 origin = transform.position + 0.4f * Vector3.up + Vector3.right * 0.4f * (goRight ? 1f : -1f);
         Vector3 direction = Vector3.right * (goRight ? 1f : -1f);
 
-        Debug.DrawRay(origin, direction * 0.2f, Color.chartreuse);   //(départ, direction, couleur, durée)
+        Debug.DrawRay(origin, direction * 0.2f, Color.chartreuse);   //(départ, direction *where, couleur,)
         RaycastHit2D sideHit = Physics2D.Raycast(origin, direction, 0.2f);
 
         

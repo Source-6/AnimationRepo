@@ -72,9 +72,9 @@ public class MoveHero : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext callbackContext)
     {
-        animator.SetBool("on jump", true);
-        rigidbody2D.AddForce(Vector2.up * jumpForce);
         isJumping = true;
+        animator.SetBool("on jump", isJumping);
+        rigidbody2D.AddForce(Vector2.up * jumpForce);
         Debug.Log("jump");
     }
 
