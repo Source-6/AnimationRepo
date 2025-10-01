@@ -53,11 +53,11 @@ public class MoveHero : MonoBehaviour
         MoveX();
         Vector3 origin = transform.position +0.01f* Vector3.down;
         Vector3 direction = Vector3.down;
-        RaycastHit2D downHit = Physics2D.Raycast(origin, direction, 0.2f);
-        Debug.DrawRay(origin, direction *0.2f, Color.aquamarine);
+        RaycastHit2D downHit = Physics2D.Raycast(origin, direction, 0.5f);
+        Debug.DrawRay(origin, direction *0.5f, Color.aquamarine);
         if (isJumping)
         {
-            if (downHit.collider != null)                          //(rigidbody2D.linearVelocityY < 0f)     //changer avec raycasting (vers le bas, verifier à 0.2f) ->
+            if (downHit.collider != null && rigidbody2D.linearVelocityY < 0f )                          //(rigidbody2D.linearVelocityY < 0f)     //changer avec raycasting (vers le bas, verifier à 0.2f) ->
             {
                 isJumping = false;
                 animator.SetBool("on jump", false);

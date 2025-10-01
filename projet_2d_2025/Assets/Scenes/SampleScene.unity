@@ -1981,7 +1981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actions: {fileID: -944628639613478452, guid: ef296acf3308f774dbcff8074ad960f6, type: 3}
   jumpForce: 300
-  speed: 5
+  speed: 2
 --- !u!95 &1828733059
 Animator:
   serializedVersion: 7
